@@ -31,15 +31,13 @@ Project ini adalah automation testing suite untuk marketplace SauceDemo. Skrip d
 1. Clone repository:
    ```bash
    git clone <url-repo-anda>
-   cd marketplace-saucedemo
+   cd saucedemo-web-automation-playwright
    ```
 
 2. Install dependensi:
    ```bash
    npm install
    ```
-
-3. Jika menggunakan variabel lingkungan, pastikan buat file `.env` jika diperlukan.
 
 ## ▶️ Menjalankan Test
 
@@ -60,6 +58,11 @@ npx playwright show-report
 - `package.json` saat ini hanya berisi `devDependencies` untuk Playwright, Node.js types, dan dotenv.
 - Jika ingin menambahkan skrip npm, tambahkan di bagian `scripts` pada `package.json`.
 
-## 📝 Kontak
+## 📝 Author
 
-Isi informasi kontak atau dokumentasi tambahan sesuai kebutuhan.
+Aryandhi Windiarto
+
+Software Quality Assurance Engineer
+
+LinkedIn:
+https://linkedin.com/in/aryandhiwindiarto

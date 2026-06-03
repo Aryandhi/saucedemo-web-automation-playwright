@@ -5,11 +5,10 @@ on:
   pull_request:
     branches: [ main, master ]
 
-# PERMISSIONS INI YANG PENTING
 permissions:
   contents: read
   pages: write
-  id-token: write   # 🔥 Kunci utama untuk deploy
+  id-token: write
 
 jobs:
   test:
@@ -19,21 +18,29 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
-          node-version: 'v20.15.1'
+          node-version: '20.15.1'
       
       - name: Install dependencies
         run: npm ci
       
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          CI: 'true'
+          BASE_URL: 'https://www.saucedemo.com'  # Explicit URL
+          # DEBUG: 'pw:api'  # Uncomment untuk debug detail
       
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: test-report
-          path: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+            test-results.json
           retention-days: 30
       
       - name: Configure GitHub pages
@@ -52,7 +59,3 @@ jobs:
         if: always()
         id: deployment
         uses: actions/deploy-pages@v4
-        # GITHUB_TOKEN sudah otomatis, tidak perlu ditulis explicit
-        # Tapi kalau mau ditulis juga tidak masalah:
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

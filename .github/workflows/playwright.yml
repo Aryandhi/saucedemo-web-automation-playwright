@@ -1,9 +1,14 @@
 name: Saucedemo-web-automation-playwright-test
 on:
+  schedule:
+    # Cron expression untuk setiap 30 menit
+    - cron: '*/30 * * * *'
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  # Optional: Manual trigger dari GitHub UI
+  workflow_dispatch:
 
 permissions:
   contents: read
